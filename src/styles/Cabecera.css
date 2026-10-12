@@ -1,0 +1,12 @@
+.cabecera-tienda {
+  background-color: #006400;
+  padding: 8px 16px;
+}
+
+.banner-tienda {
+  display: block;
+  width: 950px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}

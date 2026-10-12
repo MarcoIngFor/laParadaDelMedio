@@ -1,0 +1,13 @@
+.nosotros-contenido {
+  background-color: #f4f1e9;
+  padding: 30px 24px 40px;
+}
+
+.nosotros-video {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+}

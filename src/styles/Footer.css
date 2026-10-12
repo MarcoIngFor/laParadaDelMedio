@@ -1,0 +1,38 @@
+.footer-tienda {
+  background-color: #333333;
+  color: white;
+  font-family: Georgia, 'Times New Roman', serif;
+  padding: 40px 0 24px;
+}
+
+.footer-logo {
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+}
+
+.footer-titulo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-tienda a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-tienda a:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin: 28px 0 0;
+}
+
+@media (max-width: 767px) {
+  .footer-tienda {
+    text-align: center;
+  }
+}

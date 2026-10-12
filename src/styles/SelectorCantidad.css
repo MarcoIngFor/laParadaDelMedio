@@ -1,0 +1,27 @@
+.selector-cantidad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.selector-cantidad button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background-color: #006400;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.selector-cantidad button:hover:not(:disabled) {
+  background-color: #004b00;
+}
+
+.selector-cantidad button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

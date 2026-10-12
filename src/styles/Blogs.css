@@ -1,0 +1,17 @@
+.blogs-pagina {
+  background-color: #f4f1e9;
+  padding: 40px 0;
+}
+
+.blogs-pagina .container {
+  max-width: 1120px;
+}
+
+.blogs-titulo {
+  color: #006400;
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}

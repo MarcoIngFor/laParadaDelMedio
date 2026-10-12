@@ -1,0 +1,57 @@
+.bienvenida-tienda {
+  background-color: #006400;
+  color: white;
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.bienvenida-titulo {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.bienvenida-descripcion {
+  margin-bottom: 0;
+}
+
+.bienvenida-contenido {
+  position: relative;
+  padding-inline: 180px;
+}
+
+.bienvenida-login {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  text-decoration: none;
+}
+
+.bienvenida-login img {
+  display: block;
+  width: 200px;
+  height: auto;
+}
+
+.bienvenida-login:hover {
+  background: transparent;
+}
+
+@media (max-width: 767px) {
+  .bienvenida-contenido {
+    padding-inline: 12px;
+  }
+
+  .bienvenida-login {
+    position: static;
+    transform: none;
+    width: fit-content;
+    margin: 20px auto 0;
+  }
+}

@@ -1,0 +1,26 @@
+.categorias-tienda {
+  background-color: #006400;
+  padding: 40px 0;
+}
+
+.categorias-titulo {
+ 
+  color: #f4f1e9;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.tarjeta-categoria {
+  display: block;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.imagen-categoria {
+  display: block;
+  width: 100%;
+  height: auto;
+}

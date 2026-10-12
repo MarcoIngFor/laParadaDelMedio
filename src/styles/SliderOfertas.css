@@ -1,0 +1,41 @@
+.slider-ofertas {
+  background-color: #006400;
+  padding: 16px 8px;
+}
+
+.slider-contenido {
+  position: relative;
+  width: 100;
+}
+
+.slider-imagen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.slider-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.slider-anterior {
+  left: 12px;
+}
+
+.slider-siguiente {
+  right: 12px;
+}
+
+.slider-control:hover {
+  background-color: #006400;
+}
