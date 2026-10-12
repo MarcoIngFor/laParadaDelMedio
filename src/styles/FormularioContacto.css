@@ -1,0 +1,113 @@
+.contacto-contenido {
+  background-color: #f4f1e9;
+  padding: 40px 20px;
+}
+
+.formulario-contacto {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 50px 24px;
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.formulario-contacto h2 {
+  color: #006400;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.contacto-campos {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.formulario-contacto .form-label {
+  display: block;
+  color: #006400;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.formulario-contacto .form-control {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #888;
+  border-radius: 5px;
+}
+
+.formulario-contacto .form-control:focus {
+  border-color: #006400;
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.15);
+}
+
+.formulario-contacto textarea.form-control {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.formulario-contacto .contacto-error {
+  color: #d00000;
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+.formulario-contacto .form-control[aria-invalid='true'] {
+  border-color: #d00000;
+}
+
+.formulario-contacto .form-control[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(208, 0, 0, 0.15);
+}
+
+.contacto-enviar {
+  padding: 10px 20px;
+  background-color: #006400;
+  color: white;
+  border: 1px solid #006400;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.contacto-enviar:hover {
+  background-color: #004b00;
+  border-color: #004b00;
+}
+
+.contacto-enviar:focus-visible {
+  outline: 3px solid #006400;
+  outline-offset: 3px;
+}
+
+.formulario-contacto .contacto-resultado {
+  color: #006400;
+  margin: 20px 0 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.formulario-contacto .contacto-resultado:empty {
+  display: none;
+}
+
+@media (max-width: 575px) {
+  .contacto-contenido {
+    padding: 24px 16px;
+  }
+
+  .formulario-contacto {
+    padding: 30px 20px;
+  }
+
+  .formulario-contacto h2 {
+    font-size: 22px;
+  }
+}
