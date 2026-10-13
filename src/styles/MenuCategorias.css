@@ -32,3 +32,10 @@
   color: #006400;
   margin-bottom: 24px;
 }
+
+.menu-categorias .enlace-categoria.categoria-activa {
+  background-color: #f4f1e9;
+  border-color: #f4f1e9;
+  color: #006400;
+  font-weight: bold;
+}

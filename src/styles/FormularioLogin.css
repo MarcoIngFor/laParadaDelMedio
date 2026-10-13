@@ -1,0 +1,105 @@
+.login-contenido {
+  background-color: #f4f1e9;
+  padding: 40px 20px;
+}
+
+.formulario-login {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 50px 24px;
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.formulario-login h2 {
+  color: #006400;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.login-campos {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.formulario-login .form-label {
+  display: block;
+  color: #006400;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.formulario-login .form-control {
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #888;
+  border-radius: 5px;
+}
+
+.formulario-login .form-control:focus {
+  border-color: #006400;
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.15);
+}
+
+.formulario-login .form-control[aria-invalid='true'] {
+  border-color: #d00000;
+}
+
+.formulario-login .form-control[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(208, 0, 0, 0.15);
+}
+
+.login-error {
+  color: #d00000;
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+.login-boton {
+  padding: 10px 20px;
+  background-color: #006400;
+  color: white;
+  border: 1px solid #006400;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login-boton:hover {
+  background-color: #004b00;
+  border-color: #004b00;
+}
+
+.login-boton:focus-visible {
+  outline: 3px solid #006400;
+  outline-offset: 3px;
+}
+
+.login-registro {
+  margin: 24px 0 0;
+  font-family: Georgia, serif;
+}
+
+.login-registro a {
+  color: #006400;
+  font-weight: bold;
+}
+
+.login-registro a:hover {
+  color: #004b00;
+}
+
+@media (max-width: 575px) {
+  .login-contenido {
+    padding: 24px 16px;
+  }
+
+  .formulario-login {
+    padding: 30px 20px;
+  }
+}

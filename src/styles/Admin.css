@@ -1,0 +1,129 @@
+.admin-bienvenida {
+  position: relative;
+  background-color: #006400;
+  color: white;
+  padding: 36px 160px;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+
+.admin-bienvenida h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.admin-bienvenida p {
+  font-weight: bold;
+  margin: 0;
+}
+
+.admin-cerrar-sesion {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 16px;
+  background-color: #a00000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.admin-cerrar-sesion:hover {
+  background-color: #800000;
+}
+
+.admin-cerrar-sesion:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+.admin-contenido {
+  background-color: #f4f1e9;
+  padding: 40px 20px;
+}
+
+.admin-contenido .container {
+  max-width: 1120px;
+}
+
+.tarjeta-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 40px 24px;
+  background-color: white;
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+
+.tarjeta-admin h2 {
+  color: #006400;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 12px 0 24px;
+}
+
+.tarjeta-admin > p {
+  margin-bottom: 28px;
+}
+
+.tarjeta-admin-contenido {
+  margin-top: auto;
+}
+
+.tarjeta-admin-contenido p:last-child {
+  margin-bottom: 0;
+}
+
+.admin-boton {
+  padding: 10px 20px;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.admin-boton:disabled {
+  background-color: #808080;
+  cursor: not-allowed;
+}
+
+a.admin-boton {
+  display: inline-block;
+  text-decoration: none;
+}
+
+a.admin-boton:hover {
+  background-color: #004b00;
+  color: white;
+}
+
+@media (max-width: 767px) {
+  .admin-bienvenida {
+    padding: 30px 20px;
+  }
+
+  .admin-bienvenida h1 {
+    font-size: 28px;
+  }
+
+  .admin-cerrar-sesion {
+    position: static;
+    transform: none;
+    margin-top: 24px;
+  }
+
+  .admin-contenido {
+    padding: 24px 16px;
+  }
+
+  .tarjeta-admin {
+    padding: 30px 20px;
+  }
+}

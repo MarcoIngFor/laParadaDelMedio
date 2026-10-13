@@ -1,0 +1,145 @@
+.gestion-productos {
+  background-color: #f4f1e9;
+  padding: 40px 20px;
+}
+
+.gestion-productos .container {
+  max-width: 1300px;
+}
+
+.gestion-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.gestion-productos h1,
+.gestion-productos h2 {
+  color: #006400;
+}
+
+.gestion-productos h1 {
+  font-size: 30px;
+}
+
+.gestion-productos h2 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.gestion-formulario,
+.gestion-tabla {
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.gestion-formulario .form-label {
+  color: #006400;
+  font-weight: bold;
+}
+
+.gestion-formulario small {
+  display: block;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+  color: #555;
+}
+
+.gestion-formulario textarea {
+  resize: vertical;
+}
+
+.gestion-formulario .form-control:focus,
+.gestion-formulario .form-select:focus {
+  border-color: #006400;
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.15);
+}
+
+.gestion-formulario [aria-invalid='true'] {
+  border-color: #d00000;
+}
+
+.gestion-error {
+  color: #d00000;
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+.gestion-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gestion-boton {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #006400;
+  color: white;
+  border: 1px solid #006400;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.gestion-boton:hover {
+  background-color: #004b00;
+  border-color: #004b00;
+  color: white;
+}
+
+.gestion-boton:focus-visible {
+  outline: 3px solid #006400;
+  outline-offset: 3px;
+}
+
+.gestion-secundario {
+  background-color: #555;
+  border-color: #555;
+}
+
+.gestion-secundario:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.gestion-eliminar {
+  background-color: #a00000;
+  border-color: #a00000;
+}
+
+.gestion-eliminar:hover {
+  background-color: #800000;
+  border-color: #800000;
+}
+
+.gestion-mensaje {
+  margin: 20px 0;
+}
+
+.gestion-mensaje:empty {
+  display: none;
+}
+
+.gestion-tabla {
+  margin-top: 24px;
+}
+
+.gestion-tabla th {
+  white-space: nowrap;
+}
+
+@media (max-width: 575px) {
+  .gestion-productos {
+    padding: 24px 12px;
+  }
+
+  .gestion-formulario,
+  .gestion-tabla {
+    padding: 20px 16px;
+  }
+}

@@ -8,6 +8,9 @@ import Blogs from './pages/Blogs'
 import BlogAhorro from './pages/BlogAhorro'
 import BlogOrganizacion from './pages/BlogOrganizacion'
 import Contacto from './pages/Contacto'
+import Login from './pages/Login'
+import Admin from './pages/Admin'
+import AdminProductos from './pages/AdminProductos'
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path="/blog/ahorro" element={<BlogAhorro />} />
           <Route path="/blog/organizacion" element={<BlogOrganizacion />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/productos" element={<AdminProductos />} />
 
           <Route
             path="*"

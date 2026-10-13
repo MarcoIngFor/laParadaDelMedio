@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom'
-import { productos } from '../data/Productos'
+import { obtenerCatalogo } from '../data/Catalogo'
 import '../styles/DetalleProducto.css'
 
 
 function DetalleProducto() {
+  const productos = obtenerCatalogo()
+  
   const { codigo } = useParams()
 
   const producto = productos.find(
