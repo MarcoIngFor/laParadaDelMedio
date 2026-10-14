@@ -1,58 +1,56 @@
-.navbar-tienda {
-  background-color: #333333;
-  padding: 16px;
-  border-radius: 12px;
+.navbar-fondo {
+  background-color: #006400;
+  padding: 8px 16px 16px;
 }
 
-.imagen-nav {
-  display: block;
-  width: 90px;
+.navbar-tienda {
+  background-color: #333;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.navbar-logo {
+  width: 60px;
   height: auto;
 }
 
-.marca-nav {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
+.navbar-tienda .navbar-brand {
+  margin-right: 36px;
 }
 
-.enlace-nav {
-  display: block;
-  border: 2px solid #006400;
-  border-radius: 12px;
-  padding: 8px 20px;
+.navbar-tienda .enlace-navbar {
+  min-width: 82px;
+  padding: 10px 18px;
+  border: 2px solid #008000;
+  border-radius: 14px;
   color: white;
   text-align: center;
-  text-decoration: none;
 }
 
-.enlace-nav:hover,
-.enlace-nav:focus-visible {
+.navbar-tienda .enlace-navbar:hover {
   background-color: #dc3545;
   border-color: #dc3545;
   color: white;
 }
 
-.carrito-nav {
+.navbar-carrito {
   color: white;
+  padding: 10px;
   text-decoration: none;
 }
 
-.carrito-nav:hover {
-  color: #f5deb3;
+.navbar-carrito:hover {
+  color: #f4f1e9;
+  text-decoration: underline;
 }
 
-.navbar-tienda .marca-nav {
-  margin-right: 24px;
-}
-
-@media (max-width: 991.98px) {
+@media (max-width: 991px) {
   .navbar-tienda .navbar-collapse {
     padding-top: 20px;
   }
 
-  .navbar-tienda .carrito-nav {
+  .navbar-carrito {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 16px;
   }
 }

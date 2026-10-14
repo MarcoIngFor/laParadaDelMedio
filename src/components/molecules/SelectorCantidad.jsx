@@ -6,13 +6,13 @@ function SelectorCantidad({ cantidad, onCambiar, maximo = 20 }) {
       <button
         type="button"
         onClick={() => onCambiar(cantidad - 1)}
-        disabled={cantidad <= 1}
+        disabled={cantidad <= 1 || maximo < 1}
         aria-label="Disminuir cantidad"
       >
         −
       </button>
 
-      <span>{cantidad} un</span>
+      <span aria-live="polite">{cantidad} un</span>
 
       <button
         type="button"

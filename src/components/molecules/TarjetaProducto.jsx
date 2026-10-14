@@ -1,43 +1,83 @@
-import Boton from '../atoms/Boton'
-import '../../styles/TarjetaProducto.css'
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import SelectorCantidad from './SelectorCantidad'
+import { useCarrito } from '../../context/CarritoContext'
+import { obtenerCatalogo } from '../../data/Catalogo'
+import '../../styles/TarjetaProducto.css'
 
 function TarjetaProducto({ codigo, nombre, precio, imagen }) {
-  function agregarProducto() {
-    alert(`Agregaste ${nombre}`)
-  }
+  const [cantidad, setCantidad] = useState(1)
+  const [mensaje, setMensaje] = useState('')
 
-const [cantidad, setCantidad] = useState(1)
+  const { agregarProducto } = useCarrito()
+
+  const producto = obtenerCatalogo().find(
+    (producto) => producto.codigo === codigo
+  )
+
+  const stock = Number(producto?.stock || 0)
+
+  function agregarAlCarrito() {
+    const resultado = agregarProducto(codigo, cantidad)
+    setMensaje(resultado.mensaje)
+
+    if (resultado.correcto) {
+      setCantidad(1)
+    }
+  }
 
   return (
     <article className="card h-100 tarjeta-producto">
-        <Link to={`/productos/${codigo}`}>
-        <img
+      <Link to={`/productos/${encodeURIComponent(codigo)}`}>
+        {imagen ? (
+          <img
             src={imagen}
             alt={nombre}
-            className="producto-imagen"
+            className="card-img-top imagen-producto"
+          />
+        ) : (
+          <div
+            className="imagen-producto"
+            style={{
+              height: 280,
+              display: 'grid',
+              placeItems: 'center',
+            }}
+          >
+            Sin imagen
+          </div>
+        )}
+      </Link>
+
+      <div className="card-body">
+        <h2 className="card-title h5">{nombre}</h2>
+
+        <p className="producto-precio">
+          ${Number(precio).toLocaleString('es-CL')}
+        </p>
+
+        <SelectorCantidad
+          cantidad={cantidad}
+          maximo={stock}
+          onCambiar={(numero) => {
+            setCantidad(numero)
+            setMensaje('')
+          }}
         />
-        </Link>
 
-        <div className="card-body">
-            <h2 className="card-title h5">{nombre}</h2>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={agregarAlCarrito}
+          disabled={stock < 1}
+        >
+          {stock < 1 ? 'Sin stock' : 'Agregar al carrito'}
+        </button>
 
-            <p className="producto-precio">
-            ${precio.toLocaleString('es-CL')}
-            </p>
-
-            <SelectorCantidad
-                cantidad={cantidad}
-                onCambiar={setCantidad}
-            />
-
-            <Boton
-                texto="Agregar al carrito"
-                onClick={agregarProducto}
-            />
-        </div>
+        <p className="small mt-2 mb-0" role="status">
+          {mensaje}
+        </p>
+      </div>
     </article>
   )
 }

@@ -1,14 +1,62 @@
+import { useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { obtenerCatalogo } from '../data/Catalogo'
+import { useCarrito } from '../context/CarritoContext'
+import SelectorCantidad from '../components/molecules/SelectorCantidad'
 import '../styles/DetalleProducto.css'
+
+function CompraProducto({ producto }) {
+  const [cantidad, setCantidad] = useState(1)
+  const [mensaje, setMensaje] = useState('')
+
+  const { agregarProducto } = useCarrito()
+  const stock = Number(producto.stock)
+
+  function agregar() {
+    const resultado = agregarProducto(producto.codigo, cantidad)
+    setMensaje(resultado.mensaje)
+
+    if (resultado.correcto) {
+      setCantidad(1)
+    }
+  }
+
+  return (
+    <div className="mb-4">
+      <SelectorCantidad
+        cantidad={cantidad}
+        maximo={stock}
+        onCambiar={(numero) => {
+          setCantidad(numero)
+          setMensaje('')
+        }}
+      />
+
+      <button
+        type="button"
+        className="btn btn-success"
+        style={{
+          backgroundColor: '#006400',
+          borderColor: '#006400',
+        }}
+        onClick={agregar}
+        disabled={stock < 1}
+      >
+        {stock < 1 ? 'Sin stock' : 'Agregar al carrito'}
+      </button>
+
+      <p className="small mt-2 mb-0" role="status">
+        {mensaje}
+      </p>
+    </div>
+  )
+}
 
 function DetalleProducto() {
   const { codigo } = useParams()
   const location = useLocation()
 
-  const productos = obtenerCatalogo()
-
-  const producto = productos.find(
+  const producto = obtenerCatalogo().find(
     (producto) => producto.codigo === codigo
   )
 
@@ -54,9 +102,7 @@ function DetalleProducto() {
           </div>
 
           <div className="col-12 col-md-6">
-            <h1 className="detalle-titulo">
-              {producto.nombre}
-            </h1>
+            <h1 className="detalle-titulo">{producto.nombre}</h1>
 
             <p>
               {producto.descripcion ||
@@ -69,6 +115,13 @@ function DetalleProducto() {
 
             <p>Stock disponible: {producto.stock}</p>
             <p>Categoría: {producto.categoria}</p>
+
+            {!desdeGestion && (
+              <CompraProducto
+                key={producto.codigo}
+                producto={producto}
+              />
+            )}
 
             <Link to={destinoVolver} className="boton-volver">
               {textoVolver}
