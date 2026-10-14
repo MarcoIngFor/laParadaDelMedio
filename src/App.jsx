@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import LayoutTienda from './components/layout/LayoutTienda'
+
 import Inicio from './pages/Inicio'
 import Productos from './pages/Productos'
 import DetalleProducto from './pages/DetalleProducto'
@@ -9,8 +11,10 @@ import BlogAhorro from './pages/BlogAhorro'
 import BlogOrganizacion from './pages/BlogOrganizacion'
 import Contacto from './pages/Contacto'
 import Login from './pages/Login'
+import Registro from './pages/Registro'
 import Admin from './pages/Admin'
 import AdminProductos from './pages/AdminProductos'
+import AdminUsuarios from './pages/AdminUsuarios'
 
 function App() {
   return (
@@ -19,15 +23,35 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/productos" element={<Productos />} />
-          <Route path="/productos/:codigo" element={<DetalleProducto />} />
+
+          <Route
+            path="/productos/:codigo"
+            element={<DetalleProducto />}
+          />
+
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/blog" element={<Blogs />} />
           <Route path="/blog/ahorro" element={<BlogAhorro />} />
-          <Route path="/blog/organizacion" element={<BlogOrganizacion />} />
+
+          <Route
+            path="/blog/organizacion"
+            element={<BlogOrganizacion />}
+          />
+
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/productos" element={<AdminProductos />} />
+
+          <Route
+            path="/admin/productos"
+            element={<AdminProductos />}
+          />
+
+          <Route
+            path="/admin/usuarios"
+            element={<AdminUsuarios />}
+          />
 
           <Route
             path="*"

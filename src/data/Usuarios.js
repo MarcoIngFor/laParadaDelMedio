@@ -39,27 +39,52 @@ const usuariosDemo = [
 
 export function obtenerUsuarios() {
   const guardados = localStorage.getItem('usuarios')
-  let usuarios = []
 
-  try {
-    const datos = JSON.parse(guardados)
-    usuarios = Array.isArray(datos) ? datos : []
-  } catch {
-    usuarios = []
+  if (guardados !== null) {
+    const usuarios = JSON.parse(guardados)
+
+    if (!Array.isArray(usuarios)) {
+      throw new Error('Los usuarios guardados no tienen un formato válido.')
+    }
+
+    return usuarios
   }
 
-  usuariosDemo.forEach((usuarioDemo) => {
-    const existe = usuarios.some(
-      (usuario) =>
-        usuario.correo?.trim().toLowerCase() === usuarioDemo.correo
-    )
+  const usuarios = usuariosDemo.map((usuario) => ({ ...usuario }))
 
-    if (!existe) {
-      usuarios.push({ ...usuarioDemo })
-    }
-  })
-
-  localStorage.setItem('usuarios', JSON.stringify(usuarios))
+  guardarUsuarios(usuarios)
 
   return usuarios
+}
+
+export function guardarUsuarios(usuarios) {
+  localStorage.setItem('usuarios', JSON.stringify(usuarios))
+}
+
+export function validarRun(run) {
+  if (!/^\d{6,8}[0-9K]$/.test(run)) {
+    return false
+  }
+
+  const cuerpo = run.slice(0, -1)
+  const digitoIngresado = run.slice(-1)
+
+  let suma = 0
+  let multiplicador = 2
+
+  for (let i = cuerpo.length - 1; i >= 0; i--) {
+    suma += Number(cuerpo[i]) * multiplicador
+    multiplicador = multiplicador === 7 ? 2 : multiplicador + 1
+  }
+
+  const resultado = 11 - (suma % 11)
+
+  const digitoCorrecto =
+    resultado === 11
+      ? '0'
+      : resultado === 10
+        ? 'K'
+        : String(resultado)
+
+  return digitoIngresado === digitoCorrecto
 }

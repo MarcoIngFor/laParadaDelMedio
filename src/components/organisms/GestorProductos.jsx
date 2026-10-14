@@ -233,6 +233,7 @@ function GestorProductos({ esAdministrador }) {
 
     setErrores({})
     setMensaje('')
+
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -310,6 +311,7 @@ function GestorProductos({ esAdministrador }) {
                       className="form-select"
                     >
                       <option value="">Seleccione una categoría</option>
+
                       {categorias.map((categoria) => (
                         <option key={categoria.id} value={categoria.id}>
                           {categoria.nombre}
@@ -410,21 +412,27 @@ function GestorProductos({ esAdministrador }) {
                   >
                     <td>{producto.codigo}</td>
                     <td>{producto.nombre}</td>
+
                     <td>
                       ${Number(producto.precio).toLocaleString('es-CL')}
                     </td>
+
                     <td>
                       {producto.stock}
+
                       {stockCritico && (
                         <span title="Stock crítico"> ⚠️</span>
                       )}
                     </td>
+
                     <td>{producto.stockCritico ?? '—'}</td>
                     <td>{categoria?.nombre || producto.categoria}</td>
+
                     <td>
                       <div className="gestion-acciones">
                         <Link
                           to={`/productos/${encodeURIComponent(producto.codigo)}`}
+                          state={{ desde: '/admin/productos' }}
                           className="gestion-boton"
                         >
                           Ver

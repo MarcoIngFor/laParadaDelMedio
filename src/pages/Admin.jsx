@@ -1,7 +1,7 @@
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import TarjetaAdmin from '../components/molecules/TarjetaAdmin'
 import { obtenerCatalogo } from '../data/Catalogo'
 import '../styles/Admin.css'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 function leerDatos(clave, valorInicial) {
   try {
@@ -27,15 +27,14 @@ function Admin() {
   }
 
   const esAdministrador = usuarioActivo === 'admin'
+  const usuariosGuardados = leerDatos('usuarios', [])
+  const productosGuardados = obtenerCatalogo()
 
-    const usuariosGuardados = leerDatos('usuarios', [])
-    const productosGuardados = obtenerCatalogo()
-
-    const totalUsuarios = Array.isArray(usuariosGuardados)
+  const totalUsuarios = Array.isArray(usuariosGuardados)
     ? usuariosGuardados.length
     : 0
 
-    const totalProductos = productosGuardados.length
+  const totalProductos = productosGuardados.length
 
   function cerrarSesion() {
     localStorage.removeItem('usuarioActivo')
@@ -70,9 +69,10 @@ function Admin() {
             <div className="col-12 col-md-6">
               <TarjetaAdmin
                 titulo="📦 Productos"
-                descripcion="Gestionar los productos disponibles en la tienda.">
+                descripcion="Gestionar los productos disponibles en la tienda."
+              >
                 <Link to="/admin/productos" className="admin-boton">
-                    Gestionar Productos
+                  Gestionar Productos
                 </Link>
               </TarjetaAdmin>
             </div>
@@ -83,13 +83,9 @@ function Admin() {
                   titulo="👥 Usuarios"
                   descripcion="Gestionar los usuarios registrados en el sistema."
                 >
-                  <button
-                    type="button"
-                    className="admin-boton"
-                    disabled
-                  >
-                    Gestionar Usuarios — Próximamente
-                  </button>
+                  <Link to="/admin/usuarios" className="admin-boton">
+                    Gestionar Usuarios
+                  </Link>
                 </TarjetaAdmin>
               </div>
             )}

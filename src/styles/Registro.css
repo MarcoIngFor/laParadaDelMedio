@@ -1,0 +1,138 @@
+.registro-presentacion {
+  background-color: white;
+  padding: 36px 20px;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+
+.registro-presentacion h1 {
+  color: #006400;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.registro-presentacion p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.registro-contenido {
+  background-color: #f4f1e9;
+  padding: 40px 20px;
+}
+
+.formulario-registro {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 36px;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.formulario-registro h2 {
+  color: #006400;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.formulario-registro .form-label {
+  color: #006400;
+  font-weight: bold;
+}
+
+.formulario-registro .form-control,
+.formulario-registro .form-select {
+  border: 1px solid #888;
+  border-radius: 5px;
+  padding: 10px 12px;
+}
+
+.formulario-registro .form-control:focus,
+.formulario-registro .form-select:focus {
+  border-color: #006400;
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.15);
+}
+
+.formulario-registro [aria-invalid='true'] {
+  border-color: #d00000;
+}
+
+.formulario-registro [aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(208, 0, 0, 0.15);
+}
+
+.registro-error {
+  color: #d00000;
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+.registro-acciones {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.registro-boton {
+  padding: 10px 24px;
+  background-color: #006400;
+  color: white;
+  border: 1px solid #006400;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.registro-boton:hover {
+  background-color: #004b00;
+  border-color: #004b00;
+}
+
+.registro-boton:focus-visible {
+  outline: 3px solid #006400;
+  outline-offset: 3px;
+}
+
+.registro-mensaje {
+  margin-top: 20px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.registro-mensaje:empty {
+  display: none;
+}
+
+.registro-exito {
+  color: #006400;
+}
+
+.registro-login {
+  text-align: center;
+  margin: 24px 0 0;
+}
+
+.registro-login a {
+  color: #006400;
+  font-weight: bold;
+}
+
+.registro-login a:hover {
+  color: #004b00;
+}
+
+@media (max-width: 575px) {
+  .registro-contenido {
+    padding: 24px 16px;
+  }
+
+  .formulario-registro {
+    padding: 28px 20px;
+  }
+
+  .registro-presentacion h1 {
+    font-size: 26px;
+  }
+}
