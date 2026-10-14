@@ -17,6 +17,9 @@ import Admin from './pages/Admin'
 import AdminProductos from './pages/AdminProductos'
 import AdminUsuarios from './pages/AdminUsuarios'
 import Carrito from './pages/Carrito'
+import Checkout from './pages/Checkout'
+import CompraExitosa from './pages/CompraExitosa'
+import CompraFallida from './pages/CompraFallida'
 
 function App() {
   return (
@@ -45,6 +48,14 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Registro />} />
             <Route path="/carrito" element={<Carrito />} />
+            <Route path="/checkout" element={<Checkout />} />
+
+            <Route
+              path="/compra-exitosa/:codigo"
+              element={<CompraExitosa />}
+            />
+
+            <Route path="/compra-fallida" element={<CompraFallida />} />
             <Route path="/admin" element={<Admin />} />
 
             <Route

@@ -17,6 +17,12 @@ function Carrito() {
   const formatoPrecio = (precio) =>
     `$${Number(precio).toLocaleString('es-CL')}`
 
+  const carritoValido = carrito.every(
+    (producto) =>
+      producto.disponible &&
+      producto.cantidad <= producto.stock
+  )
+
   return (
     <section className="carrito-pagina">
       <div className="container">
@@ -54,9 +60,7 @@ function Carrito() {
                       className="carrito-imagen"
                     />
                   ) : (
-                    <div className="carrito-sin-imagen">
-                      Sin imagen
-                    </div>
+                    <div className="carrito-sin-imagen">Sin imagen</div>
                   )}
 
                   <div className="carrito-informacion">
@@ -122,6 +126,12 @@ function Carrito() {
                 Total: {formatoPrecio(totalPrecio)}
               </p>
 
+              {!carritoValido && (
+                <p className="text-danger">
+                  Revisa los productos y cantidades antes de continuar.
+                </p>
+              )}
+
               <div className="carrito-acciones">
                 <button
                   type="button"
@@ -135,13 +145,19 @@ function Carrito() {
                   Vaciar carrito
                 </button>
 
-                <button
-                  type="button"
-                  className="carrito-boton"
-                  disabled
-                >
-                  Checkout — Próximamente
-                </button>
+                {carritoValido ? (
+                  <Link to="/checkout" className="carrito-boton">
+                    Continuar compra
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    className="carrito-boton"
+                    disabled
+                  >
+                    Continuar compra
+                  </button>
+                )}
               </div>
             </div>
           </>

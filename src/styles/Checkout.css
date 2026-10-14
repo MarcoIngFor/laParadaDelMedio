@@ -1,0 +1,111 @@
+.checkout-pagina {
+  background-color: #f4f1e9;
+  padding: 40px 20px;
+}
+
+.checkout-pagina .container {
+  max-width: 1120px;
+}
+
+.checkout-pagina h1,
+.checkout-pagina h2 {
+  color: #006400;
+}
+
+.checkout-pagina h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.checkout-pagina h2 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.checkout-tarjeta {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+
+.checkout-tarjeta .form-label {
+  color: #006400;
+  font-weight: bold;
+}
+
+.checkout-tarjeta .form-control:focus,
+.checkout-tarjeta .form-select:focus {
+  border-color: #006400;
+  box-shadow: 0 0 0 3px rgba(0, 100, 0, 0.15);
+}
+
+.checkout-tarjeta [aria-invalid='true'] {
+  border-color: #d00000;
+}
+
+.checkout-error {
+  color: #d00000;
+  font-size: 14px;
+  margin: 6px 0 0;
+}
+
+.checkout-total {
+  color: #006400;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.checkout-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.checkout-boton {
+  display: inline-block;
+  padding: 10px 18px;
+  background-color: #006400;
+  color: white;
+  border: 1px solid #006400;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.checkout-boton:hover {
+  background-color: #004b00;
+  border-color: #004b00;
+  color: white;
+}
+
+.checkout-boton:focus-visible {
+  outline: 3px solid #006400;
+  outline-offset: 3px;
+}
+
+.checkout-secundario {
+  background-color: #555;
+  border-color: #555;
+}
+
+.checkout-secundario:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.checkout-boton:disabled {
+  background-color: #808080;
+  border-color: #808080;
+  cursor: not-allowed;
+}
+
+@media (max-width: 575px) {
+  .checkout-pagina {
+    padding: 24px 16px;
+  }
+
+  .checkout-tarjeta {
+    padding: 24px 20px;
+  }
+}

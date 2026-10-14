@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import { obtenerCatalogo } from '../data/Catalogo'
+import { realizarCompra } from '../data/Pedidos'
 
 const CarritoContext = createContext(null)
 
@@ -125,14 +126,7 @@ export function CarritoProvider({ children }) {
             ? { ...item, cantidad: nuevaCantidad }
             : item
         )
-      : [
-          ...items,
-          {
-            codigo,
-            nombre: producto.nombre,
-            cantidad,
-          },
-        ]
+      : [...items, { codigo, nombre: producto.nombre, cantidad }]
 
     const correcto = guardar(nuevosItems)
 
@@ -174,6 +168,17 @@ export function CarritoProvider({ children }) {
     guardar([])
   }
 
+  function confirmarCompra(cliente, resultadoPago) {
+    const resultado = realizarCompra(items, cliente, resultadoPago)
+
+    if (resultado.correcto) {
+      setItems([])
+      setErrorCarrito('')
+    }
+
+    return resultado
+  }
+
   return (
     <CarritoContext.Provider
       value={{
@@ -185,6 +190,7 @@ export function CarritoProvider({ children }) {
         cambiarCantidad,
         eliminarProducto,
         vaciarCarrito,
+        confirmarCompra,
       }}
     >
       {children}
