@@ -16,6 +16,7 @@ import Registro from './pages/Registro'
 import Admin from './pages/Admin'
 import AdminProductos from './pages/AdminProductos'
 import AdminUsuarios from './pages/AdminUsuarios'
+import AdminPedidos from './pages/AdminPedidos'
 import Carrito from './pages/Carrito'
 import Checkout from './pages/Checkout'
 import CompraExitosa from './pages/CompraExitosa'
@@ -66,6 +67,11 @@ function App() {
             <Route
               path="/admin/usuarios"
               element={<AdminUsuarios />}
+            />
+
+            <Route
+              path="/admin/pedidos"
+              element={<AdminPedidos />}
             />
 
             <Route

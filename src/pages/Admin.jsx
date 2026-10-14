@@ -27,14 +27,20 @@ function Admin() {
   }
 
   const esAdministrador = usuarioActivo === 'admin'
+
   const usuariosGuardados = leerDatos('usuarios', [])
   const productosGuardados = obtenerCatalogo()
+  const pedidosGuardados = leerDatos('pedidos', [])
 
   const totalUsuarios = Array.isArray(usuariosGuardados)
     ? usuariosGuardados.length
     : 0
 
   const totalProductos = productosGuardados.length
+
+  const totalPedidos = Array.isArray(pedidosGuardados)
+    ? pedidosGuardados.length
+    : 0
 
   function cerrarSesion() {
     localStorage.removeItem('usuarioActivo')
@@ -93,15 +99,11 @@ function Admin() {
             <div className="col-12 col-md-6">
               <TarjetaAdmin
                 titulo="🛒 Pedidos"
-                descripcion="Revisar los pedidos realizados por los clientes."
+                descripcion="Revisar las compras simuladas realizadas por los clientes."
               >
-                <button
-                  type="button"
-                  className="admin-boton"
-                  disabled
-                >
-                  Próximamente
-                </button>
+                <Link to="/admin/pedidos" className="admin-boton">
+                  Consultar Pedidos
+                </Link>
               </TarjetaAdmin>
             </div>
 
@@ -113,6 +115,7 @@ function Admin() {
                 >
                   <p>Usuarios registrados: {totalUsuarios}</p>
                   <p>Productos disponibles: {totalProductos}</p>
+                  <p>Pedidos registrados: {totalPedidos}</p>
                 </TarjetaAdmin>
               </div>
             )}
