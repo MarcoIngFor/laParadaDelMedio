@@ -1,4 +1,4 @@
-import { obtenerCatalogo, guardarCatalogo } from './Catalogo'
+import { obtenerCatalogo, guardarCatalogo } from './Catalogo.js'
 
 export function obtenerPedidos() {
   const guardados = localStorage.getItem('pedidos')

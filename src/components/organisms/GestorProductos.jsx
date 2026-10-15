@@ -11,6 +11,7 @@ const formularioInicial = {
   nombre: '',
   descripcion: '',
   precio: '',
+  precioOferta: '',
   stock: '',
   stockCritico: '',
   categoria: '',
@@ -21,7 +22,12 @@ const campos = [
   { nombre: 'codigo', etiqueta: 'Código', tipo: 'text' },
   { nombre: 'nombre', etiqueta: 'Nombre', tipo: 'text' },
   { nombre: 'descripcion', etiqueta: 'Descripción' },
-  { nombre: 'precio', etiqueta: 'Precio', tipo: 'number' },
+  { nombre: 'precio', etiqueta: 'Precio normal', tipo: 'number' },
+  {
+    nombre: 'precioOferta',
+    etiqueta: 'Precio de oferta (opcional)',
+    tipo: 'number',
+  },
   { nombre: 'stock', etiqueta: 'Stock', tipo: 'number' },
   {
     nombre: 'stockCritico',
@@ -36,63 +42,77 @@ const campos = [
   },
 ]
 
-function validarProducto(valores, catalogo, codigoOriginal) {
+function cargarCatalogoAdmin() {
+  return obtenerCatalogo({ aplicarOfertas: false })
+}
+
+function validarProducto(datos, catalogo, codigoOriginal) {
   const errores = {}
 
-  if (!valores.codigo) {
+  if (!datos.codigo) {
     errores.codigo = 'El código es obligatorio'
-  } else if (valores.codigo.length < 3) {
+  } else if (datos.codigo.length < 3) {
     errores.codigo = 'El código debe tener al menos 3 caracteres'
   } else if (
     catalogo.some(
       (producto) =>
         producto.codigo !== codigoOriginal &&
-        producto.codigo.toLowerCase() === valores.codigo.toLowerCase()
+        producto.codigo.toLowerCase() === datos.codigo.toLowerCase()
     )
   ) {
     errores.codigo = 'El código del producto ya existe'
   }
 
-  if (!valores.nombre) {
+  if (!datos.nombre) {
     errores.nombre = 'El nombre es obligatorio'
-  } else if (valores.nombre.length > 100) {
+  } else if (datos.nombre.length > 100) {
     errores.nombre = 'El nombre no puede superar 100 caracteres'
   }
 
-  if (valores.descripcion.length > 500) {
+  if (datos.descripcion.length > 500) {
     errores.descripcion =
       'La descripción no puede superar 500 caracteres'
   }
 
-  if (valores.precio === '') {
+  if (datos.precio === '') {
     errores.precio = 'El precio es obligatorio'
   } else if (
-    !Number.isFinite(Number(valores.precio)) ||
-    Number(valores.precio) < 0
+    !Number.isFinite(Number(datos.precio)) ||
+    Number(datos.precio) < 0
   ) {
     errores.precio = 'El precio debe ser un número igual o mayor a 0'
   }
 
-  if (valores.stock === '') {
+  if (
+    datos.precioOferta !== '' &&
+    (!Number.isFinite(Number(datos.precioOferta)) ||
+      Number(datos.precioOferta) < 0 ||
+      Number(datos.precioOferta) >= Number(datos.precio))
+  ) {
+    errores.precioOferta =
+      'La oferta debe ser igual o mayor a 0 y menor que el precio normal'
+  }
+
+  if (datos.stock === '') {
     errores.stock = 'El stock es obligatorio'
   } else if (
-    !Number.isInteger(Number(valores.stock)) ||
-    Number(valores.stock) < 0
+    !Number.isInteger(Number(datos.stock)) ||
+    Number(datos.stock) < 0
   ) {
     errores.stock =
       'El stock debe ser un número entero igual o mayor a 0'
   }
 
   if (
-    valores.stockCritico !== '' &&
-    (!Number.isInteger(Number(valores.stockCritico)) ||
-      Number(valores.stockCritico) < 0)
+    datos.stockCritico !== '' &&
+    (!Number.isInteger(Number(datos.stockCritico)) ||
+      Number(datos.stockCritico) < 0)
   ) {
     errores.stockCritico =
       'El stock crítico debe ser un número entero igual o mayor a 0'
   }
 
-  if (!categorias.some((categoria) => categoria.id === valores.categoria)) {
+  if (!categorias.some((categoria) => categoria.id === datos.categoria)) {
     errores.categoria = 'Debe seleccionar una categoría'
   }
 
@@ -100,7 +120,7 @@ function validarProducto(valores, catalogo, codigoOriginal) {
 }
 
 function GestorProductos({ esAdministrador }) {
-  const [catalogo, setCatalogo] = useState(obtenerCatalogo)
+  const [catalogo, setCatalogo] = useState(cargarCatalogoAdmin)
   const [valores, setValores] = useState({ ...formularioInicial })
   const [codigoOriginal, setCodigoOriginal] = useState(null)
   const [errores, setErrores] = useState({})
@@ -132,6 +152,7 @@ function GestorProductos({ esAdministrador }) {
     try {
       guardarCatalogo(nuevoCatalogo)
       setCatalogo(nuevoCatalogo)
+      setMensaje('')
       return true
     } catch {
       setMensaje('No se pudieron guardar los cambios en este navegador.')
@@ -177,6 +198,8 @@ function GestorProductos({ esAdministrador }) {
       nombre: datos.nombre,
       descripcion: datos.descripcion,
       precio: Number(datos.precio),
+      precioOferta:
+        datos.precioOferta === '' ? null : Number(datos.precioOferta),
       stock: Number(datos.stock),
       stockCritico:
         datos.stockCritico === '' ? null : Number(datos.stockCritico),
@@ -189,7 +212,9 @@ function GestorProductos({ esAdministrador }) {
         Math.max(0, ...catalogo.map((item) => Number(item.id) || 0)) + 1
     }
 
-    const nuevoCatalogo = codigoOriginal !== null
+    const estabaEditando = codigoOriginal !== null
+
+    const nuevoCatalogo = estabaEditando
       ? catalogo.map((item) =>
           item.codigo === codigoOriginal ? producto : item
         )
@@ -198,8 +223,6 @@ function GestorProductos({ esAdministrador }) {
     if (!persistir(nuevoCatalogo)) {
       return
     }
-
-    const estabaEditando = codigoOriginal !== null
 
     limpiarFormulario()
 
@@ -217,19 +240,14 @@ function GestorProductos({ esAdministrador }) {
 
     setCodigoOriginal(producto.codigo)
 
-    setValores({
-      codigo: producto.codigo,
-      nombre: producto.nombre,
-      descripcion: producto.descripcion || '',
-      precio: String(producto.precio),
-      stock: String(producto.stock),
-      stockCritico:
-        producto.stockCritico == null
-          ? ''
-          : String(producto.stockCritico),
-      categoria: producto.categoria,
-      imagen: producto.imagen || '',
-    })
+    setValores(
+      Object.fromEntries(
+        Object.keys(formularioInicial).map((campo) => [
+          campo,
+          producto[campo] == null ? '' : String(producto[campo]),
+        ])
+      )
+    )
 
     setErrores({})
     setMensaje('')
@@ -242,11 +260,7 @@ function GestorProductos({ esAdministrador }) {
       return
     }
 
-    const confirmar = window.confirm(
-      `¿Desea eliminar "${producto.nombre}"?`
-    )
-
-    if (!confirmar) {
+    if (!window.confirm(`¿Desea eliminar "${producto.nombre}"?`)) {
       return
     }
 
@@ -306,10 +320,7 @@ function GestorProductos({ esAdministrador }) {
                   </label>
 
                   {campo.nombre === 'categoria' ? (
-                    <select
-                      {...propiedades}
-                      className="form-select"
-                    >
+                    <select {...propiedades} className="form-select">
                       <option value="">Seleccione una categoría</option>
 
                       {categorias.map((categoria) => (
@@ -327,10 +338,16 @@ function GestorProductos({ esAdministrador }) {
                       min={campo.tipo === 'number' ? 0 : undefined}
                       step={
                         campo.tipo === 'number'
-                          ? campo.nombre === 'precio' ? 'any' : 1
+                          ? ['precio', 'precioOferta'].includes(campo.nombre)
+                            ? 'any'
+                            : 1
                           : undefined
                       }
                     />
+                  )}
+
+                  {campo.nombre === 'precioOferta' && (
+                    <small>Deja este campo vacío para quitar la oferta.</small>
                   )}
 
                   {campo.nombre === 'imagen' && (
@@ -387,7 +404,8 @@ function GestorProductos({ esAdministrador }) {
               <tr>
                 <th scope="col">Código</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>
+                <th scope="col">Precio normal</th>
+                <th scope="col">Oferta</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Stock crítico</th>
                 <th scope="col">Categoría</th>
@@ -412,22 +430,21 @@ function GestorProductos({ esAdministrador }) {
                   >
                     <td>{producto.codigo}</td>
                     <td>{producto.nombre}</td>
-
                     <td>
                       ${Number(producto.precio).toLocaleString('es-CL')}
                     </td>
-
+                    <td>
+                      {producto.precioOferta != null &&
+                      producto.precioOferta !== ''
+                        ? `$${Number(producto.precioOferta).toLocaleString('es-CL')}`
+                        : '—'}
+                    </td>
                     <td>
                       {producto.stock}
-
-                      {stockCritico && (
-                        <span title="Stock crítico"> ⚠️</span>
-                      )}
+                      {stockCritico && <span title="Stock crítico"> ⚠️</span>}
                     </td>
-
                     <td>{producto.stockCritico ?? '—'}</td>
                     <td>{categoria?.nombre || producto.categoria}</td>
-
                     <td>
                       <div className="gestion-acciones">
                         <Link
@@ -465,7 +482,7 @@ function GestorProductos({ esAdministrador }) {
 
               {catalogo.length === 0 && (
                 <tr>
-                  <td colSpan={7}>No existen productos registrados</td>
+                  <td colSpan={8}>No existen productos registrados</td>
                 </tr>
               )}
             </tbody>

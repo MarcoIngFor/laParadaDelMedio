@@ -109,8 +109,19 @@ function DetalleProducto() {
                 'Producto disponible en La Parada del Medio'}
             </p>
 
+            {producto.enOferta && (
+              <p>
+                <span className="badge text-bg-warning me-2">Oferta</span>
+                Precio normal:{' '}
+                <del>
+                  ${producto.precioOriginal.toLocaleString('es-CL')}
+                </del>
+              </p>
+            )}
+
             <p className="detalle-precio">
-              Precio: ${Number(producto.precio).toLocaleString('es-CL')}
+              {producto.enOferta ? 'Precio de oferta' : 'Precio'}:{' '}
+              ${Number(producto.precio).toLocaleString('es-CL')}
             </p>
 
             <p>Stock disponible: {producto.stock}</p>

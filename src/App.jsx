@@ -5,6 +5,7 @@ import LayoutTienda from './components/layout/LayoutTienda'
 
 import Inicio from './pages/Inicio'
 import Productos from './pages/Productos'
+import Ofertas from './pages/Ofertas'
 import DetalleProducto from './pages/DetalleProducto'
 import Nosotros from './pages/Nosotros'
 import Blogs from './pages/Blogs'
@@ -30,6 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path="/productos" element={<Productos />} />
+            <Route path="/ofertas" element={<Ofertas />} />
 
             <Route
               path="/productos/:codigo"

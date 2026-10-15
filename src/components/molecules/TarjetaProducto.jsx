@@ -16,6 +16,7 @@ function TarjetaProducto({ codigo, nombre, precio, imagen }) {
   )
 
   const stock = Number(producto?.stock || 0)
+  const precioActual = producto?.precio ?? precio
 
   function agregarAlCarrito() {
     const resultado = agregarProducto(codigo, cantidad)
@@ -53,7 +54,18 @@ function TarjetaProducto({ codigo, nombre, precio, imagen }) {
         <h2 className="card-title h5">{nombre}</h2>
 
         <p className="producto-precio">
-          ${Number(precio).toLocaleString('es-CL')}
+          {producto?.enOferta && (
+            <>
+              <span className="badge text-bg-warning mb-2">Oferta</span>
+              <br />
+              <del className="text-secondary small">
+                ${producto.precioOriginal.toLocaleString('es-CL')}
+              </del>
+              <br />
+            </>
+          )}
+
+          ${Number(precioActual).toLocaleString('es-CL')}
         </p>
 
         <SelectorCantidad

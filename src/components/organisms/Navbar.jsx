@@ -6,6 +6,7 @@ import '../../styles/Navbar.css'
 const enlaces = [
   { ruta: '/', texto: 'Inicio' },
   { ruta: '/productos', texto: 'Productos' },
+  { ruta: '/ofertas', texto: 'Ofertas' },
   { ruta: '/nosotros', texto: 'Nosotros' },
   { ruta: '/blog', texto: 'Blog' },
   { ruta: '/contacto', texto: 'Contacto' },
@@ -27,11 +28,7 @@ function Navbar() {
         aria-label="Navegación principal"
       >
         <div className="container-fluid">
-          <Link
-            to="/"
-            className="navbar-brand"
-            onClick={cerrarMenu}
-          >
+          <Link to="/" className="navbar-brand" onClick={cerrarMenu}>
             <img
               src="/img/logo/logo.png"
               alt="La Parada del Medio"
